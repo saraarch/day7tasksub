@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new task</title>
+</head>
+<body>
+    <script>
+        
+//      var request = new XMLHttpRequest();
+//       request.open("GET","https://restcountries.com/v2/all",true)
+//       request.send();
+//       request.onload = function () {
+//         console.log(this.response);
+//         var data = JSON.parse(this.response);
+//        console.log(data);
+
+//        for(i=0;i<data.length;i++){
+//     //       var a=data[i].flags.png
+//         let asiaSubregion = data.filter => countries.subregion=="asia";
+//         }
+//     ;
+// }
+//         console.log(asiaSubregion);
+
+        var request = new XMLHttpRequest();
+      request.open("GET","https://restcountries.com/v2/all",true)
+      request.send();
+      request.onload = function () {
+        console.log(this.response);
+        var data = JSON.parse(this.response);
+       console.log(data);
+
+//######## 1.countries from Asia continent / region using filter 
+
+        let asiaSubregion = data.filter(countries => countries.subregion.includes("Asia"));
+    
+    
+   
+        console.log("subreg",asiaSubregion);
+           
+//            let totPop = [];
+// for (let i = 0; i < data.length; i++) {
+//     if (data[i].population < 2000000) {
+//         totPop.push(data[i]);
+//     }
+// }
+// console.log("pop",totPop);
+
+//####### 2. filter countries with population < 200000
+
+let totalPopulation = data.filter(countries => countries.population < 2000000);
+
+console.log("totalPopulation",totalPopulation);
+        
+               
+        
+        
+        // let asiaregion1=[];
+   
+    	
+// for(i=0;i<data.length;i++){
+//     	if(data[i].region.includes("Asia")){
+//       	asiaregion1.push(data[i]);
+//       }
+//     }
+//     console.log("asiaregion",asiaregion1);
+  
+
+// }
+
+       
+//############## 3.using foreach function and print name,capital,flag
+
+  
+var countryname = data.forEach(function(countries) {
+     console.log ("name:",`${countries.name} `);
+     console.log ("capital:",`${countries.capital} `);
+     console.log ("flags:",`${countries.flags.png} `);
+     
+  });
+//   var totalPopulation1 = data.reduce(function(total, country) {
+//                    let totalPopulation = 0;
+
+//                 if(total.population){
+//                 totalPopulation = total.population;
+//                 }
+//                 else{
+//                 totalPopulation= total
+//                 }
+
+//             return totalPopulation + country.population;
+//         });
+//            console.log("Total Population : ",totalPopulation1);
+                //Print the country which uses US Dollars as currency
+          // for(let i=0;i<data.length;i++){
+          //    let isCurrency = data[i].currencies !== undefined;
+          //    if(isCurrency){
+          //         let currencyObj = data[i].currencies;
+          //         let isUSD  = currencyObj.USD !== undefined;
+          //         if(isUSD){
+          //           console.log("Curreny USD Country####: ",isUSD );
+          //         }
+
+          //    }
+          //   }
+        //   var cur=[];
+        // for(i=0;i<data.length;i++){
+        //     if(data[i].currencies==="USD")
+        //     {
+        //         console.log("name:",data[i].name,"==>",data[i].currencies.USD)
+        //     }
+        // }
+    //     var result = data.filter(country => country.currencies[0].code == "USD")
+    // console.log("RESULT",result);
+    // /1.Creating request object
+
+    //######5. Print the country which uses US Dollars as currency.
+var request = new XMLHttpRequest();
+
+//2.Open my request connection
+request.open('GET','https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json');
+
+//3.Send a request
+request.send();
+
+//4.Data after response
+request.onload = function(){
+    var data = JSON.parse(this.response);
+    // loop through the country and for each country will have another currencies array
+    // in that fetch currency[0].code -> it will always be 0
+    // filter only those code is USD
+    var result = data.filter(country => country.currencies[0].code == "USD")
+    console.log("result usd ",result)
+}
+      //#########4.Print the total population of countries using reduce function
+      
+           let totalCountryPopulation =   data.map(x => x.population).reduce((acc, y) => acc + y)
+           
+           console.log("returnPopulationCount",totalCountryPopulation);
+          
+}
+
+          
+        
+  
+
+
+       
+    
+  
+</script>
+    
+</body>
+</html>
